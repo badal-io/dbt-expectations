@@ -34,7 +34,9 @@ set_values as (
 validation_errors as (
     -- values from the model that are not in the set
     select
-        *,
+        {% if query_context %}
+           {{ query_context }},
+        {% endif %}
         v.value_field
     from
         all_values v
